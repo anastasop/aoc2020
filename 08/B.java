@@ -9,11 +9,11 @@ public class B {
         var mach = new Machine();
         var insts = mach.compile(new InputStreamReader(System.in));
 
-        for (var i = 0; i < insts.size(); i++) {
-            if (mach.run(insts, instruction -> instruction.times > 0)) {
-                System.out.printf("Halt: %d%n", mach.getAcc());
-            }
+	if (mach.run(insts, instruction -> instruction.times > 0)) {
+	    System.out.printf("Halt: %d%n", mach.getAcc());
+	}
 
+        for (var i = 0; i < insts.size(); i++) {
             var orig = insts.get(i);
             if (orig instanceof Machine.Nop) {
                 var nop = (Machine.Nop) orig;
@@ -25,7 +25,6 @@ public class B {
 
             if (mach.run(insts, instruction -> instruction.times > 0)) {
                 System.out.printf("Halt: %d%n", mach.getAcc());
-                System.out.printf("Line: %d", i + 1);
             }
 
             insts.set(i, orig);
